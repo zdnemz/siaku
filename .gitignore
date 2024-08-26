@@ -1,0 +1,10 @@
+/vendor/
+composer.lock
+*.log
+*.cache
+*.tmp
+*.bak
+*.swp
+*.swo
+.env
+*.sql
