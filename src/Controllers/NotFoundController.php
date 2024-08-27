@@ -11,6 +11,6 @@ class NotFoundController extends Controller
             "title" => "Siaku - Not Found",
         ];
 
-        $this->render('404', $data);
+        $this->render('error/404', $data);
     }
 }

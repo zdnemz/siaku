@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 use App\Middleware\AuthMiddleware;
+use App\Models\DivisiModel;
 
-class DashboardController extends Controller
+class DivisiController extends Controller
 {
 
     public function __construct()
@@ -21,8 +22,13 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return $this->render('admin/dashboard', [
-            'title' => 'Siaku - Dashboard',
+
+        $divisiModel = new DivisiModel();
+        $divisi = $divisiModel->getAll();
+
+        return $this->render('admin/divisi', [
+            'title' => 'Siaku - Divisi',
+            'divisi' => $divisi
         ]);
     }
 }

@@ -15,8 +15,15 @@ class LogoutController extends Controller
 
     public function logout()
     {
-        unset($_SESSION['email']);
-        unset($_SESSION['user_id']);
+        // Hapus sesi JWT
+        unset($_SESSION['jwt']);
+        // Regenerasi session ID untuk mencegah session fixation
+        session_regenerate_id(true);
+
+        // Hentikan session
+        session_destroy();
+
+        // Redirect ke halaman beranda
         $this->redirect('/');
         return;
     }

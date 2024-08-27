@@ -51,4 +51,10 @@ class Database
         $stmt = $this->query($sql, $params);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function execute($sql, $params = [])
+    {
+        $stmt = $this->query($sql, $params);
+        return $stmt->rowCount();
+    }
 }

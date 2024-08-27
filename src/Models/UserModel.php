@@ -34,15 +34,16 @@ class UserModel
     {
         $id = GenerateUUID::generate();
 
-        $sql = "INSERT INTO pengguna (id_pengguna, nama, email, password) VALUES (:id, :name, :email, :password)";
+        $sql = "INSERT INTO pengguna (id_pengguna, nama, email, password, id_divisi) VALUES (:id, :name, :email, :password, :id_divisi)";
         $params = [
             ':id' => $id,
             ':name' => $data['name'],
             ':email' => $data['email'],
-            ':password' => password_hash($data['password'], PASSWORD_BCRYPT)
+            ':password' => password_hash($data['password'], PASSWORD_BCRYPT),
+            ':id_divisi' => $data['divisi']
         ];
 
-        return $this->db->fetch($sql, $params);
+        return $this->db->execute($sql, $params);
     }
 
     public function login($email, $password)

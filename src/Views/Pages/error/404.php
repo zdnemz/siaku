@@ -12,7 +12,7 @@ View::render('Components/navbar');
                 <i class="bi bi-exclamation-triangle display-1 text-secondary"></i>
                 <h1 class="display-1">404</h1>
                 <h1 class="mb-4">Page Not Found</h1>
-                <p class="mb-4">Kami minta maaf, halaman yang Anda cari tidak ada di situs web kami! Mungkin Anda ingin pergi ke halaman depan?</p>
+                <p class="mb-4">Ups!, halaman yang Anda cari tidak ada di situs web kami</p>
                 <a class="btn btn-primary rounded-pill py-3 px-5" href="/">Kembali ke beranda</a>
             </div>
         </div>

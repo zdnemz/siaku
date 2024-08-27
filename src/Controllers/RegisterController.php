@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Helpers\Encrypt;
+use App\Helpers\JWT;
 use App\Models\DivisiModel;
 use App\Models\UserModel;
 
@@ -42,12 +42,9 @@ class RegisterController extends Controller
             return;
         }
 
-        // Hash password
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
         $data = [
             'email' => $email,
-            'password' => $hashedPassword,
+            'password' => $password,
             'name' => $name,
             'divisi' => $divisi
         ];
@@ -65,12 +62,19 @@ class RegisterController extends Controller
         $userModel->create($data);
         $user = $userModel->get($email);
 
-        // Regenerasi session ID untuk keamanan
         session_regenerate_id(true);
 
-        $_SESSION['hak_akses'] = 'user';
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['user_id'] = $user['id_pengguna'];
+        $user_id = $user['id_pengguna'];
+        $role = $user['hak_akses'];
+
+        // Generate JWT token
+        $token = JWT::generate([
+            'id' => $user_id,
+            'role' => $role
+        ]);
+
+        // Set session
+        $_SESSION['jwt'] = $token;
 
         $this->redirect('/');
         return;

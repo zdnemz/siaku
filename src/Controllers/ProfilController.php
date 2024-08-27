@@ -8,17 +8,24 @@ use App\Models\UserModel;
 
 class ProfilController extends Controller
 {
+    private $payload = [];
 
     public function __construct()
     {
-        AuthMiddleware::handle();
+        $payload = AuthMiddleware::handle();
+
+        if (!$payload) {
+            $this->redirect('/login');
+        }
+
+        $this->payload = $payload;
     }
 
     public function index()
     {
         $userModel = new UserModel();
 
-        $user = $userModel->getById($_SESSION['user_id']);
+        $user = $userModel->getById($this->payload->id);
 
         return $this->render('profil', [
             'title' => 'Siaku - Profil',
