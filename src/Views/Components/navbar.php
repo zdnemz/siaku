@@ -26,7 +26,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
                         <a href="/admin/dashboard" class="dropdown-item">Dashboard</a>
                         <a href="/admin/kelas" class="dropdown-item">Kelas</a>
                         <a href="/admin/pengajar" class="dropdown-item">Pengajar</a>
-                        <a href="/admin/peserta" class="dropdown-item">Peserta</a>
+                        <a href="/admin/pengguna" class="dropdown-item">Pengguna</a>
                         <a href="/admin/divisi" class="dropdown-item">Divisi</a>
                         <a href="/admin/absensi" class="dropdown-item">Absensi</a>
                     </div>
@@ -46,7 +46,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
                 class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Masuk</a>
             <a href="/auth/register" class="btn btn-primary rounded-pill text-white py-2 px-4">Daftar</a>
         <?php } else { ?>
-            <form action="/logout" method="POST">
+            <form action="/auth/logout" method="POST">
                 <input type="submit" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4"
                     value="Keluar">
             </form>

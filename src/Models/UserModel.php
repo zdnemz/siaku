@@ -24,7 +24,7 @@ class UserModel
 
     public function getById($id)
     {
-        $sql = "SELECT pengguna.email, pengguna.nip, pengguna.nama, divisi.nama FROM pengguna INNER JOIN divisi ON pengguna.id_divisi = divisi.id_divisi WHERE pengguna.id_pengguna = :id";
+        $sql = "SELECT pengguna.email, pengguna.nip, pengguna.nama as nama, divisi.nama as divisi FROM pengguna INNER JOIN divisi ON pengguna.id_divisi = divisi.id_divisi WHERE pengguna.id_pengguna = :id";
         $params = [':id' => $id];
 
         return $this->db->fetch($sql, $params);

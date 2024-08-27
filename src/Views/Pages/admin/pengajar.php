@@ -6,7 +6,7 @@
 
     <div class="hero-header overflow-hidden px-5">
         <div class="d-flex justify-content-between align-items-center mb-3 wow fadeInUp" data-wow-delay="0.3s">
-            <h1 class="display-4 text-dark mb-4">Divisi</h1>
+            <h1 class="display-4 text-dark mb-4">pengajar</h1>
             <button type="button" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4"
                 data-bs-toggle="modal" data-bs-target="#addModal">
                 Tambah Data
@@ -17,24 +17,27 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Divisi</th>
+                        <th>Nama Pengajar</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($divisi as $d): ?>
+                    foreach ($pengajar as $p): ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= htmlspecialchars($d['nama']) ?></td>
+                            <td><?= htmlspecialchars($p['nama']) ?></td>
+                            <td><?= htmlspecialchars($p['alamat']) ?></td>
                             <td class="d-flex justify-content-center align-items-center gap-3">
                                 <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
-                                    data-bs-target="#editModal" data-id="<?= $d['id_divisi'] ?>"
-                                    data-nama="<?= htmlspecialchars($d['nama']) ?>">Edit</button>
+                                    data-bs-target="#editModal" data-id="<?= $p['id_pengajar'] ?>"
+                                    data-nama="<?= htmlspecialchars($p['nama']) ?>"
+                                    data-alamat="<?= htmlspecialchars($p['alamat']) ?>">Edit</button>
                                 <button type="button" class="btn btn-danger rounded-pill" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal" data-id="<?= $d['id_divisi'] ?>"
-                                    data-nama="<?= htmlspecialchars($d['nama']) ?>">Hapus</button>
+                                    data-bs-target="#deleteModal" data-id="<?= $p['id_pengajar'] ?>"
+                                    data-nama="<?= htmlspecialchars($p['nama']) ?>">Hapus</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -48,19 +51,24 @@
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="/admin/divisi/create" method="POST">
+            <form action="/admin/pengajar/create" method="POST">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="addModalLabel">Tambah Data</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="addNamaDivisi" class="form-label">Nama Divisi</label>
-                        <input type="text" class="form-control" id="addNamaDivisi" name="nama" required>
+                        <label for="addNamaPengajar" class="form-label">Nama pengajar</label>
+                        <input type="text" class="form-control" id="addNamaPengajar" name="nama" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="addNamaPengajar" class="form-label">Alamat pengajar</label>
+                        <input type="text" class="form-control" id="addNamaPengajar" name="alamat" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary"
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary rounded-pill">Tambah</button>
                 </div>
             </form>
@@ -79,12 +87,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="editNamaDivisi" class="form-label">Nama Divisi</label>
-                        <input type="text" class="form-control" id="editNamaDivisi" name="nama" required>
+                        <label for="editNamaPengajar" class="form-label">Nama pengajar</label>
+                        <input type="text" class="form-control" id="editNamaPengajar" name="nama" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editAlamatPengajar" class="form-label">Alamat pengajar</label>
+                        <input type="text" class="form-control" id="editAlamatPengajar" name="alamat" required>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary"
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary rounded-pill">Simpan Perubahan</button>
                 </div>
             </form>
@@ -102,10 +115,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus divisi <strong id="deleteNamaDivisi"></strong>?</p>
+                    <p>Apakah Anda yakin ingin menghapus pengajar <strong id="deleteNamaPengajar"></strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-light border border-primary rounded-pill text-primary"
+                        data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-danger rounded-pill">Hapus</button>
                 </div>
             </form>
@@ -121,12 +135,15 @@
         const button = event.relatedTarget;
         const id = button.getAttribute('data-id');
         const nama = button.getAttribute('data-nama');
+        const alamat = button.getAttribute('data-alamat');
 
         const editForm = document.getElementById('editForm');
-        const editNamaDivisi = document.getElementById('editNamaDivisi');
+        const editNamaPengajar = document.getElementById('editNamaPengajar');
+        const editAlamatPengajar = document.getElementById('editAlamatPengajar')
 
-        editForm.action = `/admin/divisi/edit?id=${encodeURIComponent(id)}`;
-        editNamaDivisi.value = nama;
+        editForm.action = `/admin/pengajar/edit?id=${encodeURIComponent(id)}`;
+        editNamaPengajar.value = nama;
+        editAlamatPengajar.value = alamat;
     });
 
     deleteModal.addEventListener('show.bs.modal', function (event) {
@@ -135,9 +152,9 @@
         const nama = button.getAttribute('data-nama');
 
         const deleteForm = document.getElementById('deleteForm');
-        const deleteNamaDivisi = document.getElementById('deleteNamaDivisi');
+        const deleteNamaPengajar = document.getElementById('deleteNamaPengajar');
 
-        deleteForm.action = `/admin/divisi/delete?id=${encodeURIComponent(id)}`;
-        deleteNamaDivisi.textContent = nama;
+        deleteForm.action = `/admin/pengajar/delete?id=${encodeURIComponent(id)}`;
+        deleteNamaPengajar.textContent = nama;
     });
 </script>

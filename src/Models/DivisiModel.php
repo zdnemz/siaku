@@ -19,19 +19,31 @@ class DivisiModel
         return $this->db->fetchAll($sql);
     }
 
-    public function get($id)
+    public function create($nama)
     {
-        $sql = "SELECT * FROM divisi WHERE id_divisi = :id";
-        $params = [':id' => $id];
+        $sql = "INSERT INTO divisi (nama) VALUES (:nama)";
+        $params = [
+            ':nama' => $nama
+        ];
         return $this->db->fetch($sql, $params);
     }
 
-    public function create($name)
-    {
-        $sql = "INSERT INTO divisi (nama) VALUES (:name)";
+    public function edit($id, $nama) {
+        $sql = "UPDATE divisi SET nama = :nama WHERE id_divisi = :id";
         $params = [
-            ':name' => $name
+            ':nama' => $nama,
+            ':id' => $id
         ];
-        return $this->db->fetch($sql, $params);
+
+        return $this->db->execute($sql, $params);
+    }
+
+    public function delete($id) {
+        $sql = "DELETE FROM divisi WHERE id_divisi = :id";
+        $params = [
+            ':id' => $id
+        ];
+
+        return $this->db->execute($sql, $params);
     }
 }
