@@ -18,8 +18,8 @@ $router = new Router();
 
 // Mendaftarkan rute untuk metode GET dengan URI yang akan memanggil action pada controller
 $router->get('/', HomeController::class, 'index');
-$router->get('/login', LoginController::class, 'index');
-$router->get('/register', RegisterController::class, 'index');
+$router->get('/auth/login', LoginController::class, 'index');
+$router->get('/auth/register', RegisterController::class, 'index');
 $router->get('/about', AboutController::class, 'index');
 $router->get('/absensi', AbsensiController::class, 'index');
 $router->get('/profil', ProfilController::class, 'index');
@@ -28,8 +28,8 @@ $router->get('/admin/dashboard', DashboardController::class, 'index');
 $router->get('/admin/divisi', DivisiController::class, 'index');
 
 // Mendaftarkan rute untuk metode POST dengan URI yang akan memanggil action pada controller
-$router->post('/login', LoginController::class, 'login');
-$router->post('/register', RegisterController::class, 'register');
+$router->post('/auth/login', LoginController::class, 'login');
+$router->post('/auth/register', RegisterController::class, 'register');
 $router->post('/logout', LogoutController::class, 'logout');
 
 

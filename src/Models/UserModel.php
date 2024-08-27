@@ -34,9 +34,10 @@ class UserModel
     {
         $id = GenerateUUID::generate();
 
-        $sql = "INSERT INTO pengguna (id_pengguna, nama, email, password, id_divisi) VALUES (:id, :name, :email, :password, :id_divisi)";
+        $sql = "INSERT INTO pengguna (id_pengguna, nip, nama, email, password, id_divisi) VALUES (:id, :nip, :name, :email, :password, :id_divisi)";
         $params = [
             ':id' => $id,
+            ':nip' => $data['nip'],
             ':name' => $data['name'],
             ':email' => $data['email'],
             ':password' => password_hash($data['password'], PASSWORD_BCRYPT),
@@ -46,10 +47,10 @@ class UserModel
         return $this->db->execute($sql, $params);
     }
 
-    public function login($email, $password)
+    public function login($identifier, $password)
     {
-        $sql = "SELECT * FROM pengguna WHERE email = :email";
-        $params = [':email' => $email];
+        $sql = "SELECT * FROM pengguna WHERE email = :identifier OR nip = :identifier";
+        $params = [':identifier' => $identifier];
 
         $user = $this->db->fetch($sql, $params);
 
@@ -60,10 +61,13 @@ class UserModel
         return false;
     }
 
-    public function exists($email)
+    public function exists($email, $nip)
     {
-        $sql = "SELECT * FROM pengguna WHERE email = :email";
-        $params = [':email' => $email];
+        $sql = "SELECT * FROM pengguna WHERE email = :email OR nip = :nip";
+        $params = [
+            ':email' => $email,
+            ':nip' => $nip
+        ];
 
         $user = $this->db->fetch($sql, $params);
 

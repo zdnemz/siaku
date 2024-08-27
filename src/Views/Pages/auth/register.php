@@ -12,10 +12,14 @@ $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
                         <h1 class="mb-4">Daftar akun</h1>
                     </div>
                 </div>
-                <form action="/register" method="post">
+                <form action="/auth/register" method="post">
                     <div class="form-group">
                         <label class="form-control-placeholder" for="email">Email</label>
                         <input name="email" type="email" class="form-control" required="">
+                    </div>
+                    <div>
+                        <label class="form-control-placeholder" for="nip">NIP</label>
+                        <input name="nip" type="text" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label class="form-control-placeholder" for="name">Nama lengkap</label>
@@ -43,7 +47,7 @@ $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Daftar</button>
                     </div>
                 </form>
-                <p class="text-center">Sudah punya akun? <a href="/login">Login disini</a></p>
+                <p class="text-center">Sudah punya akun? <a href="/auth/login">Login disini</a></p>
             </div>
         </div>
     </div>

@@ -42,8 +42,9 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
             <?php } ?>
         </div>
         <?php if (!$session) { ?>
-            <a href="/login" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Masuk</a>
-            <a href="/register" class="btn btn-primary rounded-pill text-white py-2 px-4">Daftar</a>
+            <a href="/auth/login"
+                class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4">Masuk</a>
+            <a href="/auth/register" class="btn btn-primary rounded-pill text-white py-2 px-4">Daftar</a>
         <?php } else { ?>
             <form action="/logout" method="POST">
                 <input type="submit" class="btn btn-light border border-primary rounded-pill text-primary py-2 px-4 me-4"

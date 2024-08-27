@@ -15,7 +15,7 @@ class ProfilController extends Controller
         $payload = AuthMiddleware::handle();
 
         if (!$payload) {
-            $this->redirect('/login');
+            $this->redirect('/auth/login');
         }
 
         $this->payload = $payload;
