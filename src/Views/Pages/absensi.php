@@ -6,9 +6,9 @@
 
     <div class="hero-header overflow-hidden px-5">
         <div class="d-flex justify-content-between align-items-center mb-3 wow fadeInUp" data-wow-delay="0.3s">
-            <h1 class="display-4 text-dark mb-4">Absensi Peserta</h1>
+            <h1 class="display-4 text-dark mb-4">Absensi <?php echo htmlspecialchars(ucwords($_SESSION['role'])); ?>
+            </h1>
         </div>
-
         <!-- Card Absensi -->
         <div class="row">
             <?php $no = 1;
@@ -67,10 +67,12 @@
                         <label for="modalPembelajaran" class="form-label">Pembelajaran</label>
                         <input type="text" class="form-control" id="modalPembelajaran" name="pembelajaran" disabled>
                     </div>
-                    <div class="mb-3">
-                        <label for="modalPengajar" class="form-label">Pengajar</label>
-                        <input type="text" class="form-control" id="modalPengajar" name="pengajar" disabled>
-                    </div>
+                    <?php if ($_SESSION['role'] == 'peserta') { ?>
+                        <div class="mb-3">
+                            <label for="modalPengajar" class="form-label">Pengajar</label>
+                            <input type="text" class="form-control" id="modalPengajar" name="pengajar" disabled>
+                        </div>
+                    <?php } ?>
                     <div class="mb-3">
                         <label for="modalMateri" class="form-label">Materi</label>
                         <input type="text" class="form-control" id="modalMateri" name="materi" disabled>
@@ -112,14 +114,21 @@
         const berakhir = button.getAttribute('data-berakhir');
         const idKelas = button.getAttribute('data-id-kelas');
 
-        document.getElementById('modalPembelajaran').value = pembelajaran || '';
-        document.getElementById('modalPengajar').value = pengajar || '';
-        document.getElementById('modalMateri').value = materi || '';
-        document.getElementById('modalBerakhir').value = berakhir || '';
+        const modalPembelajaran = document.getElementById('modalPembelajaran')
+        const modalPengajar = document.getElementById('modalPengajar') ?? null
+        const modalMateri = document.getElementById('modalMateri')
+        const modalBerakhir = document.getElementById('modalBerakhir')
+
+        modalPembelajaran.value = pembelajaran
+        if (modalPengajar) {
+            modalPengajar.value = pengajar
+        }
+        modalMateri.value = materi
+        modalBerakhir.value = berakhir
 
         editForm.action = `/absensi?id=${encodeURIComponent(idKelas)}`;
-
     });
+
 
     document.getElementById('modalAbsensi').addEventListener('change', function () {
         const optionValue = this.value;

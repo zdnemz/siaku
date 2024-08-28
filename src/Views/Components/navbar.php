@@ -25,13 +25,12 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
                     <div class="dropdown-menu m-0">
                         <a href="/admin/dashboard" class="dropdown-item">Dashboard</a>
                         <a href="/admin/kelas" class="dropdown-item">Kelas</a>
-                        <a href="/admin/pengajar" class="dropdown-item">Pengajar</a>
                         <a href="/admin/pengguna" class="dropdown-item">Pengguna</a>
                         <a href="/admin/divisi" class="dropdown-item">Divisi</a>
-                        <a href="/admin/absensi" class="dropdown-item">Absensi</a>
+                        <a href="/admin/laporan" class="dropdown-item">Laporan</a>
                     </div>
                 </div>
-            <?php } elseif ($role == 'peserta') { ?>
+            <?php } else { ?>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Halaman</a>
                     <div class="dropdown-menu m-0">

@@ -30,17 +30,6 @@ View::render('Components/navbar');
                     </div>
                 </div>
             </div>
-            <!-- Pengajar Manajemen Card -->
-            <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.6s">
-                <div class="card shadow-sm border-light">
-                    <div class="card-body text-center">
-                        <i class="fas fa-chalkboard-teacher fa-3x mb-3 text-warning"></i>
-                        <h5 class="card-title">Pengajar Manajemen</h5>
-                        <p class="card-text">Kelola semua pengajar dalam sistem.</p>
-                        <a href="/admin/pengajar" class="btn btn-warning btn-sm">Go to Management</a>
-                    </div>
-                </div>
-            </div>
             <!-- Divisi Manajemen Card -->
             <div class="col-lg-3 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.8s">
                 <div class="card shadow-sm border-light">

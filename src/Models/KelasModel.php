@@ -16,15 +16,17 @@ class KelasModel
 
     public function getAll()
     {
-        $sql = "SELECT kelas.*, pengajar.nama as pengajar FROM kelas INNER JOIN pengajar ON kelas.id_pengajar = pengajar.id_pengajar";
+        $sql = "SELECT kelas.*, pengguna.nama as pengajar FROM kelas INNER JOIN pengguna ON kelas.id_pengajar = pengguna.id_pengguna WHERE pengguna.role = 'pengajar'";
         return $this->db->fetchAll($sql);
     }
 
-    public function getUnexpired()
+    public function getUnexpired($id)
     {
-        $sql = "SELECT kelas.*, pengajar.nama as pengajar FROM kelas INNER JOIN pengajar ON kelas.id_pengajar = pengajar.id_pengajar WHERE kelas.berakhir >= CURRENT_DATE()";
+        $sql = "SELECT kelas.*, pengguna.nama AS pengajar FROM kelas LEFT JOIN absensi ON kelas.id_kelas = absensi.id_kelas INNER JOIN pengguna ON kelas.id_pengajar = pengguna.id_pengguna WHERE (absensi.id_pengguna != :id OR absensi.id_pengguna IS NULL) AND pengguna.role = 'pengajar' AND kelas.berakhir >= CURRENT_DATE()";
 
-        return $this->db->fetchAll($sql);
+        $params = [':id' => $id];
+
+        return $this->db->fetchAll($sql, $params);
     }
 
     public function create($data)
@@ -68,8 +70,6 @@ class KelasModel
 
         return $this->db->execute($sql, $params);
     }
-
-
 
     public function delete($id)
     {

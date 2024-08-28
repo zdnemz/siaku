@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Core\Controller;
 use App\Middleware\AuthMiddleware;
 use App\Models\KelasModel;
-use App\Models\PengajarModel;
+use App\Models\PenggunaModel;
 
 class KelasController extends Controller
 {
@@ -28,8 +28,8 @@ class KelasController extends Controller
 
         $kelas = $this->model->getAll();
 
-        $pengajar = new PengajarModel();
-        $pengajar = $pengajar->getAll();
+        $pengajar = new PenggunaModel();
+        $pengajar = $pengajar->getPengajar();
 
         return $this->render('admin/kelas', [
             'title' => 'Siaku - Kelas',

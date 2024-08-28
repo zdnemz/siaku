@@ -16,7 +16,14 @@ class PenggunaModel
 
     public function getAll()
     {
-        $sql = "SELECT pengguna.id_pengguna, pengguna.nip, pengguna.email, pengguna.nama, pengguna.id_divisi, pengguna.role, divisi.nama AS divisi FROM pengguna INNER JOIN divisi ON pengguna.id_divisi = divisi.id_divisi;";
+        $sql = "SELECT pengguna.id_pengguna, pengguna.nip, pengguna.email, pengguna.nama, pengguna.id_divisi, pengguna.role, divisi.nama AS divisi FROM pengguna LEFT JOIN divisi ON pengguna.id_divisi = divisi.id_divisi;";
+
+        return $this->db->fetchAll($sql);
+    }
+
+    public function getPengajar()
+    {
+        $sql = "SELECT *, id_pengguna AS id_pengajar FROM pengguna WHERE role = 'pengajar';";
         return $this->db->fetchAll($sql);
     }
 
@@ -33,7 +40,7 @@ class PenggunaModel
             ':email' => $data['email'],
             ':password' => password_hash($data['password'], PASSWORD_BCRYPT),
             ':nama' => $data['nama'],
-            ':divisi' => $data['divisi'],
+            ':divisi' => $data['divisi'] != 'null' ? $data['divisi'] : null,
             ':role' => $data['role'],
         ];
 
@@ -51,7 +58,7 @@ class PenggunaModel
             ':nama' => $data['nama'],
             ':nip' => $data['nip'],
             ':email' => $data['email'],
-            ':divisi' => $data['divisi'],
+            ':divisi' => $data['divisi'] != 'null' ? $data['divisi'] : null,
             ':role' => $data['role'],
         ];
 
@@ -68,5 +75,22 @@ class PenggunaModel
         ];
 
         return $this->db->execute($sql, $params);
+    }
+
+    public function exists($email, $nip)
+    {
+        $sql = "SELECT * FROM pengguna WHERE email = :email OR nip = :nip";
+        $params = [
+            ':email' => $email,
+            ':nip' => $nip
+        ];
+
+        $user = $this->db->fetch($sql, $params);
+
+        if ($user) {
+            return true;
+        }
+
+        return false;
     }
 }

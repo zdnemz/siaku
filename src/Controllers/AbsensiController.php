@@ -27,7 +27,7 @@ class AbsensiController extends Controller
     {
 
         $kelas = new KelasModel();
-        $kelas = $kelas->getUnexpired();
+        $kelas = $kelas->getUnexpired($this->payload->id);
 
         $user = new UserModel();
         $user = $user->getById($this->payload->id);

@@ -44,7 +44,7 @@ class PenggunaController extends Controller
         $email = htmlspecialchars(trim($_POST['email']));
         $password = htmlspecialchars(trim($_POST['password']));
         $nama = htmlspecialchars(trim($_POST['nama']));
-        $divisi = htmlspecialchars(trim($_POST['divisi']));
+        $divisi = htmlspecialchars(trim($_POST['divisi'] ?? 'null'));
         $role = htmlspecialchars(trim($_POST['role']));
 
         $data = [
@@ -55,6 +55,13 @@ class PenggunaController extends Controller
             'divisi' => $divisi,
             'role' => $role,
         ];
+
+        $user = $this->model->exists($email, $nip);
+        if ($user) {
+            $_SESSION['error'] = 'Akun sudah terdaftar';
+            $this->redirect('/admin/pengguna');
+        }
+
 
         $this->model->create($data);
 
@@ -74,7 +81,7 @@ class PenggunaController extends Controller
         $nama = htmlspecialchars(trim($_POST['nama']));
         $nip = htmlspecialchars(trim($_POST['nip']));
         $email = htmlspecialchars(trim($_POST['email']));
-        $divisi = htmlspecialchars(trim($_POST['divisi']));
+        $divisi = htmlspecialchars(trim($_POST['divisi'] ?? 'null'));
         $role = htmlspecialchars(trim($_POST['role']));
 
         $data = [

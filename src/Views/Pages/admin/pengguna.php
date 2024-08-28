@@ -1,4 +1,7 @@
-<?php use App\Core\View; ?>
+<?php use App\Core\View;
+
+$error = $_SESSION['error'] ?? null;
+?>
 
 <div class="container-fluid header position-relative overflow-hidden p-0">
 
@@ -86,22 +89,23 @@
                         <input type="text" class="form-control" id="addNama" name="nama" required>
                     </div>
                     <div class="mb-3">
+                        <label for="addHakAkses" class="form-label">Role</label>
+                        <select id="addHakAkses" name="role" class="form-select" required>
+                            <option value="" selected disabled>Pilih Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="peserta">Peserta</option>
+                            <option value="pengajar">Pengajar</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="addDivisiDiv" style="display: none">
                         <label for="addDivisi" class="form-label">Divisi</label>
-                        <select id="addDivisi" name="divisi" class="form-select" required>
+                        <select id="addDivisi" name="divisi" class="form-select">
                             <option value="" selected disabled>Pilih divisi</option>
                             <?php
                             foreach ($divisi as $d) {
                                 echo '<option class="form-control" value="' . htmlspecialchars($d['id_divisi']) . '">'
                                     . htmlspecialchars($d['nama']) . '</option>';
                             } ?>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="addHakAkses" class="form-label">Role</label>
-                        <select id="addHakAkses" name="role" class="form-select" required>
-                            <option value="" selected disabled>Pilih Role</option>
-                            <option value="admin">Admin</option>
-                            <option value="peserta">Peserta</option>
                         </select>
                     </div>
                 </div>
@@ -138,22 +142,23 @@
                         <input type="text" class="form-control" id="editNama" name="nama" required>
                     </div>
                     <div class="mb-3">
+                        <label for="editHakAkses" class="form-label">Role</label>
+                        <select id="editHakAkses" name="role" class="form-select" required>
+                            <option value="" selected disabled>Pilih Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="peserta">Peserta</option>
+                            <option value="pengajar">Pengajar</option>
+                        </select>
+                    </div>
+                    <div class="mb-3" id="editDivisiDiv" style="display: none">
                         <label for="editDivisi" class="form-label">Divisi</label>
-                        <select id="editDivisi" name="divisi" class="form-select" required>
+                        <select id="editDivisi" name="divisi" class="form-select">
                             <option value="" selected disabled>Pilih divisi</option>
                             <?php
                             foreach ($divisi as $d) {
                                 echo '<option class="form-control" value="' . htmlspecialchars($d['id_divisi']) . '">'
                                     . htmlspecialchars($d['nama']) . '</option>';
                             } ?>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editHakAkses" class="form-label">Role</label>
-                        <select id="editHakAkses" name="role" class="form-select" required>
-                            <option value="" selected disabled>Pilih Role</option>
-                            <option value="admin">Admin</option>
-                            <option value="peserta">Peserta</option>
                         </select>
                     </div>
                 </div>
@@ -185,6 +190,18 @@
                     <button type="submit" class="btn btn-danger rounded-pill">Hapus</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto text-danger">Error!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <?php echo $error; ?>
         </div>
     </div>
 </div>
@@ -229,6 +246,34 @@
                 option.selected = false;
             }
         });
+
+        document.getElementById('editHakAkses').addEventListener('change', function () {
+            const optionValue = this.value;
+            const editDivisiDiv = document.getElementById('editDivisiDiv');
+            const editDivisi = document.getElementById('editDivisi');
+
+            if (optionValue === 'peserta') {
+                editDivisiDiv.style.display = 'block';
+                editDivisi.value = idDivisi;
+            } else {
+                editDivisiDiv.style.display = 'none';
+                editDivisi.value = null;
+            }
+        });
+    });
+
+    document.getElementById('addHakAkses').addEventListener('change', function () {
+        const optionValue = this.value;
+        const addDivisiDiv = document.getElementById('addDivisiDiv');
+        const addDivisi = document.getElementById('addDivisi');
+
+        if (optionValue === 'peserta') {
+            addDivisiDiv.style.display = 'block';
+            addDivisi.value = idDivisi;
+        } else {
+            addDivisiDiv.style.display = 'none';
+            addDivisi.value = null;
+        }
     });
 
     deleteModal.addEventListener('show.bs.modal', function (event) {
@@ -242,4 +287,11 @@
         deleteForm.action = `/admin/pengguna/delete?id=${encodeURIComponent(id)}`;
         deleteNama.textContent = nama;
     });
+
+    document.getElementById('liveToast').dataset.errorMessage = "<?php echo htmlspecialchars($error); ?>";
+
 </script>
+
+<?php
+unset($_SESSION['error']);
+?>

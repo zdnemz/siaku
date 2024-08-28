@@ -30,7 +30,6 @@ $router->get('/profil', ProfilController::class, 'index');
 // admin rute
 $router->get('/admin/dashboard', DashboardController::class, 'index');
 $router->get('/admin/divisi', DivisiController::class, 'index');
-$router->get('/admin/pengajar', PengajarController::class, 'index');
 $router->get('/admin/kelas', KelasController::class, 'index');
 $router->get('/admin/pengguna', PenggunaController::class, 'index');
 $router->get('/admin/laporan', LaporanController::class, 'index');
@@ -48,11 +47,6 @@ $router->post('/auth/logout', LogoutController::class, 'logout');
 $router->post('/admin/divisi/create', DivisiController::class, 'create');
 $router->post('/admin/divisi/edit', DivisiController::class, 'edit');
 $router->post('/admin/divisi/delete', DivisiController::class, 'delete');
-
-// pengajar rute
-$router->post('/admin/pengajar/create', PengajarController::class, 'create');
-$router->post('/admin/pengajar/edit', PengajarController::class, 'edit');
-$router->post('/admin/pengajar/delete', PengajarController::class, 'delete');
 
 // kelas rute
 $router->post('/admin/kelas/create', KelasController::class, 'create');
