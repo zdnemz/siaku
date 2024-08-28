@@ -32,7 +32,7 @@ class PenggunaController extends Controller
         $divisi = $divisi->getAll();
 
         return $this->render('admin/pengguna', [
-            'title' => 'Siaku - pengguna',
+            'title' => 'Siaku - Pengguna',
             'pengguna' => $pengguna,
             'divisi' => $divisi
         ]);
@@ -45,7 +45,7 @@ class PenggunaController extends Controller
         $password = htmlspecialchars(trim($_POST['password']));
         $nama = htmlspecialchars(trim($_POST['nama']));
         $divisi = htmlspecialchars(trim($_POST['divisi']));
-        $hak_akses = htmlspecialchars(trim($_POST['hak_akses']));
+        $role = htmlspecialchars(trim($_POST['role']));
 
         $data = [
             'nip' => $nip,
@@ -53,7 +53,7 @@ class PenggunaController extends Controller
             'password' => $password,
             'nama' => $nama,
             'divisi' => $divisi,
-            'hak_akses' => $hak_akses,
+            'role' => $role,
         ];
 
         $this->model->create($data);
@@ -75,14 +75,14 @@ class PenggunaController extends Controller
         $nip = htmlspecialchars(trim($_POST['nip']));
         $email = htmlspecialchars(trim($_POST['email']));
         $divisi = htmlspecialchars(trim($_POST['divisi']));
-        $hak_akses = htmlspecialchars(trim($_POST['hak_akses']));
+        $role = htmlspecialchars(trim($_POST['role']));
 
         $data = [
             'nama' => $nama,
             'nip' => $nip,
             'email' => $email,
             'divisi' => $divisi,
-            'hak_akses' => $hak_akses,
+            'role' => $role,
         ];
 
         $this->model->edit($id, $data);

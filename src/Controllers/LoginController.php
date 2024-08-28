@@ -48,15 +48,15 @@ class LoginController extends Controller
             // Generate JWT token dengan data pengguna
             $token = JWT::generate([
                 'id' => $user['id_pengguna'],
-                'role' => $user['hak_akses'],
+                'role' => $user['role'],
             ]);
 
             // Set session dengan token JWT
             $_SESSION['jwt'] = $token;
-            $_SESSION['role'] = $user['hak_akses'];
+            $_SESSION['role'] = $user['role'];
 
             // Redirect sesuai dengan peran (role) pengguna
-            $this->redirect($user['hak_akses'] === 'admin' ? '/admin/dashboard' : '/');
+            $this->redirect($user['role'] === 'admin' ? '/admin/dashboard' : '/');
         } else {
             // Hapus semua data session jika login gagal
             session_unset();

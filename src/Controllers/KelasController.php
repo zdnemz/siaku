@@ -32,7 +32,7 @@ class KelasController extends Controller
         $pengajar = $pengajar->getAll();
 
         return $this->render('admin/kelas', [
-            'title' => 'Siaku - kelas',
+            'title' => 'Siaku - Kelas',
             'kelas' => $kelas,
             'pengajar' => $pengajar
         ]);

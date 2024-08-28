@@ -16,7 +16,7 @@ class PenggunaModel
 
     public function getAll()
     {
-        $sql = "SELECT pengguna.id_pengguna, pengguna.nip, pengguna.email, pengguna.nama, pengguna.id_divisi, pengguna.hak_akses, divisi.nama AS divisi FROM pengguna INNER JOIN divisi ON pengguna.id_divisi = divisi.id_divisi;";
+        $sql = "SELECT pengguna.id_pengguna, pengguna.nip, pengguna.email, pengguna.nama, pengguna.id_divisi, pengguna.role, divisi.nama AS divisi FROM pengguna INNER JOIN divisi ON pengguna.id_divisi = divisi.id_divisi;";
         return $this->db->fetchAll($sql);
     }
 
@@ -24,8 +24,8 @@ class PenggunaModel
     {
         $id = GenerateUUID::generate();
 
-        $sql = "INSERT INTO pengguna (id_pengguna, nip, email, password, nama, id_divisi, hak_akses) 
-            VALUES (:id, :nip, :email, :password, :nama, :divisi, :hak_akses)";
+        $sql = "INSERT INTO pengguna (id_pengguna, nip, email, password, nama, id_divisi, role) 
+            VALUES (:id, :nip, :email, :password, :nama, :divisi, :role)";
 
         $params = [
             ':id' => $id,
@@ -34,7 +34,7 @@ class PenggunaModel
             ':password' => password_hash($data['password'], PASSWORD_BCRYPT),
             ':nama' => $data['nama'],
             ':divisi' => $data['divisi'],
-            ':hak_akses' => $data['hak_akses'],
+            ':role' => $data['role'],
         ];
 
         return $this->db->fetch($sql, $params);
@@ -44,7 +44,7 @@ class PenggunaModel
 
     public function edit($id, $data)
     {
-        $sql = "UPDATE pengguna SET nama = :nama, nip = :nip, email = :email, id_divisi = :divisi, hak_akses = :hak_akses WHERE id_pengguna = :id";
+        $sql = "UPDATE pengguna SET nama = :nama, nip = :nip, email = :email, id_divisi = :divisi, role = :role WHERE id_pengguna = :id";
 
         $params = [
             ':id' => $id,
@@ -52,7 +52,7 @@ class PenggunaModel
             ':nip' => $data['nip'],
             ':email' => $data['email'],
             ':divisi' => $data['divisi'],
-            ':hak_akses' => $data['hak_akses'],
+            ':role' => $data['role'],
         ];
 
         return $this->db->execute($sql, $params);

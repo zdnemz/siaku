@@ -21,7 +21,7 @@
                         <th>Email</th>
                         <th>Nama</th>
                         <th>Divisi</th>
-                        <th>Hak Akses</th>
+                        <th>Role</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,7 +35,7 @@
                             <td><?= htmlspecialchars($p['email']) ?></td>
                             <td><?= htmlspecialchars($p['nama']) ?></td>
                             <td><?= htmlspecialchars($p['divisi']) ?></td>
-                            <td><?= htmlspecialchars($p['hak_akses']) ?></td>
+                            <td><?= htmlspecialchars($p['role']) ?></td>
                             <td class="d-flex justify-content-center align-items-center gap-3">
                                 <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal"
                                     data-bs-target="#editModal" data-id="<?= htmlspecialchars($p['id_pengguna']) ?>"
@@ -43,7 +43,7 @@
                                     data-email="<?= htmlspecialchars($p['email']) ?>"
                                     data-nama="<?= htmlspecialchars($p['nama']) ?>"
                                     data-id-divisi="<?= htmlspecialchars($p['id_divisi']) ?>"
-                                    data-hak-akses="<?= htmlspecialchars($p['hak_akses']) ?>">Edit</button>
+                                    data-hak-akses="<?= htmlspecialchars($p['role']) ?>">Edit</button>
                                 <button type="button" class="btn btn-danger rounded-pill" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal" data-id="<?= htmlspecialchars($p['id_pengguna']) ?>"
                                     data-nama="<?= htmlspecialchars($p['nama']) ?>">Hapus</button>
@@ -97,9 +97,9 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="addHakAkses" class="form-label">Hak Akses</label>
-                        <select id="addHakAkses" name="hak_akses" class="form-select" required>
-                            <option value="" selected disabled>Pilih Hak Akses</option>
+                        <label for="addHakAkses" class="form-label">Role</label>
+                        <select id="addHakAkses" name="role" class="form-select" required>
+                            <option value="" selected disabled>Pilih Role</option>
                             <option value="admin">Admin</option>
                             <option value="peserta">Peserta</option>
                         </select>
@@ -149,9 +149,9 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="editHakAkses" class="form-label">Hak Akses</label>
-                        <select id="editHakAkses" name="hak_akses" class="form-select" required>
-                            <option value="" selected disabled>Pilih Hak Akses</option>
+                        <label for="editHakAkses" class="form-label">Role</label>
+                        <select id="editHakAkses" name="role" class="form-select" required>
+                            <option value="" selected disabled>Pilih Role</option>
                             <option value="admin">Admin</option>
                             <option value="peserta">Peserta</option>
                         </select>

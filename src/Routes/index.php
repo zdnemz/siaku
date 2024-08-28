@@ -6,6 +6,7 @@ use App\Controllers\DivisiController;
 use App\Controllers\DashboardController;
 use App\Controllers\HomeController;
 use App\Controllers\KelasController;
+use App\Controllers\LaporanController;
 use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
 use App\Controllers\NotFoundController;
@@ -32,8 +33,11 @@ $router->get('/admin/divisi', DivisiController::class, 'index');
 $router->get('/admin/pengajar', PengajarController::class, 'index');
 $router->get('/admin/kelas', KelasController::class, 'index');
 $router->get('/admin/pengguna', PenggunaController::class, 'index');
+$router->get('/admin/laporan', LaporanController::class, 'index');
+$router->get('/admin/laporan/export', LaporanController::class, 'exportToExcel');
 
 // Mendaftarkan rute untuk metode POST dengan URI yang akan memanggil action pada controller
+$router->post('/absensi', AbsensiController::class, 'create');
 
 // auth rute
 $router->post('/auth/login', LoginController::class, 'login');

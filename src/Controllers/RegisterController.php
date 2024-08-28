@@ -69,7 +69,7 @@ class RegisterController extends Controller
         session_regenerate_id(true);
 
         $user_id = $user['id_pengguna'];
-        $role = $user['hak_akses'];
+        $role = $user['role'];
 
         // Generate JWT token
         $token = JWT::generate([

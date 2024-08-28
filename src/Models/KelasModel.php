@@ -20,6 +20,13 @@ class KelasModel
         return $this->db->fetchAll($sql);
     }
 
+    public function getUnexpired()
+    {
+        $sql = "SELECT kelas.*, pengajar.nama as pengajar FROM kelas INNER JOIN pengajar ON kelas.id_pengajar = pengajar.id_pengajar WHERE kelas.berakhir >= CURRENT_DATE()";
+
+        return $this->db->fetchAll($sql);
+    }
+
     public function create($data)
     {
         // Generate a unique ID
