@@ -20,9 +20,6 @@ class LogoutController extends Controller
         // Regenerasi session ID untuk mencegah session fixation
         session_regenerate_id(true);
 
-        // Hentikan session
-        session_destroy();
-
         // Redirect ke halaman beranda
         $this->redirect('/');
         return;

@@ -23,9 +23,6 @@ class LoginController extends Controller
     // Method untuk memproses login
     public function login()
     {
-        // Mulai session
-        session_start();
-
         // Validasi input
         if (!isset($_POST['identifier']) || !isset($_POST['password'])) {
             $_SESSION['error'] = "Email/NIP dan password harus diisi!";
