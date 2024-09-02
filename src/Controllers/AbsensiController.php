@@ -54,7 +54,7 @@ class AbsensiController extends Controller
         $id_kelas = $_GET['id'];
         $id_pengguna = $this->payload->id;
         $status = $_POST['absensi'];
-        $keterangan = $_POST['keterangann'] ?? null;
+        $keterangan = $_POST['keterangan'] ?? null;
 
         $data = [
             'id_pengguna' => $id_pengguna,
