@@ -16,7 +16,7 @@ class AbsensiModel
 
     public function getAll()
     {
-        $sql = "SELECT absensi.*, pengguna.nama AS nama, kelas.pembelajaran AS pembelajaran FROM absensi JOIN pengguna ON absensi.id_pengguna = pengguna.id_pengguna JOIN kelas ON absensi.id_kelas = kelas.id_kelas";
+        $sql = "SELECT absensi.*, pengguna.nama AS nama, pengguna.nip AS nip, kelas.pembelajaran AS pembelajaran FROM absensi JOIN pengguna ON absensi.id_pengguna = pengguna.id_pengguna JOIN kelas ON absensi.id_kelas = kelas.id_kelas";
 
         return $this->db->fetchAll($sql);
     }

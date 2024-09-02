@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>NIP</th>
                         <th>Nama</th>
                         <th>Pembelajaran</th>
                         <th>status</th>
@@ -30,6 +31,7 @@
                     foreach ($laporan as $l): ?>
                         <tr>
                             <td><?= $no++ ?></td>
+                            <td><?= htmlspecialchars($l['nip']) ?></td>
                             <td><?= htmlspecialchars($l['nama']) ?></td>
                             <td><?= htmlspecialchars($l['pembelajaran']) ?></td>
                             <td><?= htmlspecialchars($l['status']) ?></td>
