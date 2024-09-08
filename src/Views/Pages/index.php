@@ -14,7 +14,7 @@ use App\Core\View;
     <!-- Hero Header Start -->
     <div class="hero-header overflow-hidden px-5">
         <div class="rotate-img">
-            <img src="/assets/images/sty.png" class="img-fluid w-100" alt="" />
+            <img src="https://siaku-assets.vercel.app/assets/images/sty.png" class="img-fluid w-100" alt="" />
             <div class="rotate-sty-2"></div>
         </div>
         <div class="row gy-5 align-items-center">
@@ -30,7 +30,7 @@ use App\Core\View;
                     Sekarang</a>
             </div>
             <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
-                <img src="/assets/images/hero.png" class="img-fluid w-100 h-100" alt="" />
+                <img src="https://siaku-assets.vercel.app/assets/images/hero.png" class="img-fluid w-100 h-100" alt="" />
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@ use App\Core\View;
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="RotateMoveLeft">
-                    <img src="/assets/images/about.png" class="img-fluid w-75" alt="" />
+                    <img src="https://siaku-assets.vercel.app/assets/images/about.png" class="img-fluid w-75" alt="" />
                 </div>
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -142,7 +142,7 @@ use App\Core\View;
             </div>
             <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.3s">
                 <div class="FAQ-img RotateMoveRight rounded">
-                    <img src="/assets/images/blog.png" class="img-fluid w-100" alt="" />
+                    <img src="https://siaku-assets.vercel.app/assets/images/blog.png" class="img-fluid w-100" alt="" />
                 </div>
             </div>
         </div>

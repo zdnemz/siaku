@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Middleware;
+namespace App\Middlewares;
 use App\Helpers\JWT;
 
 class AuthMiddleware

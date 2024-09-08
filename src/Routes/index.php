@@ -10,7 +10,6 @@ use App\Controllers\LaporanController;
 use App\Controllers\LoginController;
 use App\Controllers\LogoutController;
 use App\Controllers\NotFoundController;
-use App\Controllers\PengajarController;
 use App\Controllers\PenggunaController;
 use App\Controllers\ProfilController;
 use App\Controllers\RegisterController;

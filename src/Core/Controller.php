@@ -15,10 +15,10 @@ class Controller
         extract($data);
 
         // Menentukan direktori dasar tempat file tampilan disimpan
-        $baseDir = __DIR__ . '/../views/';
+        $baseDir = __DIR__ . '/../Views/';
         // Menentukan path lengkap file tampilan dan layout berdasarkan nama yang diberikan
         $viewFilePath = "{$baseDir}Pages/{$view}.php";
-        $layoutFilePath = "{$baseDir}layouts/{$layout}.php";
+        $layoutFilePath = "{$baseDir}Layouts/{$layout}.php";
 
         // Memeriksa apakah file tampilan ada di path yang ditentukan
         if (!file_exists($viewFilePath)) {

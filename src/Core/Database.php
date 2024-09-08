@@ -7,14 +7,16 @@ use PDOException;
 
 class Database
 {
-    private $host = 'localhost'; // Ganti dengan host database Anda
-    private $db_name = 'siaku'; // Ganti dengan nama database Anda
-    private $username = 'root'; // Ganti dengan username database Anda
-    private $password = ''; // Ganti dengan password database Anda
+    private $dsn;
+    private $username;
+    private $password;
     private $conn;
 
     public function __construct()
     {
+        $this->dsn = getenv('DATABASE_DSN');
+        $this->username = getenv('DATABASE_USERNAME');
+        $this->password = getenv('DATABASE_PASSWORD');
         $this->connect();
     }
 
@@ -22,8 +24,9 @@ class Database
     {
         $this->conn = null;
         try {
+
             $this->conn = new PDO(
-                "mysql:host={$this->host};dbname={$this->db_name}",
+                $this->dsn,
                 $this->username,
                 $this->password
             );

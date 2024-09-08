@@ -9,7 +9,7 @@ class View
         extract($data);
 
         // Build the path to the view file
-        $viewPath = __DIR__ . "./../Views/{$view}.php";
+        $viewPath = __DIR__ . "/../Views/{$view}.php";
 
         // Check if the view file exists
         if (file_exists($viewPath)) {

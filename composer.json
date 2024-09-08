@@ -6,9 +6,6 @@
       "App\\": "src/"
     }
   },
-  "scripts": {
-    "start": "php -S localhost:8000 -t public"
-  },
   "require": {
     "firebase/php-jwt": "^6.10",
     "phpoffice/phpspreadsheet": "^1.23"

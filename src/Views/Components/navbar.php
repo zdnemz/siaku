@@ -6,7 +6,7 @@ $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light px-4 px-lg-5 py-3 py-lg-0">
     <a href="/" class="navbar-brand p-0 d-flex align-items-center">
-        <img src="/assets/images/favicon.ico" class="img-fluid me-2" alt="Logo" style="margin-right: 10px;">
+        <img src="https://siaku-assets.vercel.app/assets/images/favicon.ico" class="img-fluid me-2" alt="Logo" style="margin-right: 10px;">
         <h1 class="display-6 text-primary m-0">
             <span>Siaku</span>
         </h1>
