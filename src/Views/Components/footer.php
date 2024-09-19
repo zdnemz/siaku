@@ -6,9 +6,6 @@
                 &copy; <?php echo htmlspecialchars(date('Y')) ?> Copyright <strong><span>PT PLN
                         (Persero)</span></strong>. All Rights Reserved
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 text-md-end text-center">
-                Designed by <a href="https://www.linkedin.com/in/chieka-ayu-lahana-b2492622b/">Chieka Ayu Lahana</a>
-            </div>
         </div>
     </div>
 </div>
