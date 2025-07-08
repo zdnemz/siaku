@@ -1,6 +1,9 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
+use App\Helpers\JWT;
+
+JWT::init();
 
 // // Membuat session
 session_start();

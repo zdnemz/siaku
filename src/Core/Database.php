@@ -7,29 +7,22 @@ use PDOException;
 
 class Database
 {
-    private $dsn;
-    private $username;
-    private $password;
     private $conn;
 
     public function __construct()
     {
-        $this->dsn = getenv('DATABASE_DSN');
-        $this->username = getenv('DATABASE_USERNAME');
-        $this->password = getenv('DATABASE_PASSWORD');
         $this->connect();
     }
 
     private function connect()
     {
         $this->conn = null;
-        try {
 
-            $this->conn = new PDO(
-                $this->dsn,
-                $this->username,
-                $this->password
-            );
+        try {
+ 
+            $dsn = getenv('DATABASE_DSN') ?? "";
+
+            $this->conn = new PDO($dsn);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();

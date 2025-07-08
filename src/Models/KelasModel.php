@@ -22,7 +22,7 @@ class KelasModel
 
     public function getUnexpired($id)
     {
-        $sql = "SELECT kelas.*, pengguna.nama AS pengajar FROM kelas INNER JOIN pengguna ON kelas.id_pengajar = pengguna.id_pengguna WHERE NOT EXISTS ( SELECT 1 FROM absensi WHERE absensi.id_kelas = kelas.id_kelas AND absensi.id_pengguna = :id ) AND pengguna.role = 'pengajar' AND kelas.berakhir >= CURRENT_DATE() AND kelas.mulai <= CURRENT_DATE()";
+        $sql = "SELECT kelas.*, pengguna.nama AS pengajar FROM kelas INNER JOIN pengguna ON kelas.id_pengajar = pengguna.id_pengguna WHERE NOT EXISTS ( SELECT 1 FROM absensi WHERE absensi.id_kelas = kelas.id_kelas AND absensi.id_pengguna = :id ) AND pengguna.role = 'pengajar' AND kelas.berakhir >= CURRENT_DATE AND kelas.mulai <= CURRENT_DATE";
 
         $params = [':id' => $id];
 
